@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+    <title>Shipping via Saddle: Shipping Price</title>
+</head>
+     <body>		
+        <referenceContainer name="content">			
+			<block class="Netplus\Shipment\Block\Adminhtml\GetquotesAdmin\Index" name="getquotesadmin_index" template="getquotesadmin/index.phtml">
+			</block>
+        </referenceContainer>  
+           
+    </body>
+</page>

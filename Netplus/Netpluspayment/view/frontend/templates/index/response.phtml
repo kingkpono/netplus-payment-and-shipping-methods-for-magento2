@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Netplus\Netpluspayment\Block\Response\Index */ ?>
+<div class="checkout-success">
+	<div class="success-title">
+		<p><span class="success-title-icon">icon</span></p>
+		<p><span><?php echo __('Thank you!') ?></span></p>
+	</div>
+    <?php
+  
+
+ if ($block->getOrderId()):?>
+       
+            <p><?php echo __('Your order # is: <span>%1</span>.', $block->escapeHtml($block->getOrderId())) ?></p>
+      
+            <p>Transaction Id: <?php echo $block->getTransactionId();?></p>
+			<p> Description: <?php echo $block->getDescription();?></p>
+			    <p>Amount Paid: <?php echo $block->getAmount();?></p>
+				  <p>Bank: <?php echo $block->getBank();?></p>
+				   
+    <?php endif;?>
+
+    <?php echo $block->getAdditionalInfoHtml() ?>
+
+	<div class="primary">
+		<a class="action primary continue" href="<?php /* @escapeNotVerified */ echo $block->getUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Continue Shopping') ?></span></a>
+	</div>
+	
+</div>

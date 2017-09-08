@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Netplus. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+    	<!--
+        <add id="Netplus_Shipment::netplus_getquotesadminindex" title="netplus_shipment" module="Netplus_Shipment"  sortOrder="20" dependsOnModule="Netplus_Shipment" action="shipment/getquotesadmin/index" resource="Netplus_Shipment::netplus_getquotesadminindex"/>
+AddMenu-->
+    </menu>
+</config>

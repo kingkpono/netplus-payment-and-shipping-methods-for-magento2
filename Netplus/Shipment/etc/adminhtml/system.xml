@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- for add new tab in Magento2 system configuration section -->
+        <tab id="netplus" translate="label" sortOrder="10">
+             <label>Netplus</label>
+        </tab>
+        <!-- for create section -->
+        <section id="shipment" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+        	  <class>separator-top</class>
+            <label>Shipment Configuration</label>           
+            <tab>netplus</tab>
+            <resource>Netplus_Shipment::configuration</resource>
+            <!-- create group for fields in section -->
+            <group id="parameters" translate="label" type="text"  sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Netplus Merchant Parameters</label>
+               
+               
+                   
+                   <field  id="client_id"   translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                     <label>Client ID</label>     
+                       
+                    </field>
+
+                     <field  id="client_secret"   translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                     <label>Client Secret</label>     
+                       
+                    </field>
+
+                    <field  id="test_mode"   translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Test Mode</label>
+                            
+                      <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        
+                          
+                            
+                           
+                         
+                     </field>
+                   
+                     <field  id="origin_name" translate="label comment" sortOrder="5" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Origin Name</label>
+             
+                      
+                          
+                            
+                           
+                          
+                      </field>
+                  <field  id="origin_email" translate="label comment" sortOrder="6" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Origin Email</label>
+                         
+                           
+                          
+                            
+                           
+                        
+                       </field>
+                     <field  id="origin_phone" translate="label comment" sortOrder="7" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Origin Phone</label>
+              
+                      </field>
+                    <field  id="origin_street" translate="label comment" sortOrder="8" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Origin Street</label>
+             
+                     </field>
+                    <field  id="origin_city" translate="label comment" sortOrder="9" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                      
+                            <label>Origin City</label>
+             
+                           
+                     </field>
+                      
+
+                    <field id="country_id" translate="label" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Origin Country</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <frontend_class>countries</frontend_class>
+                </field>
+                <field id="region_id" translate="label" sortOrder="80" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Origin State</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+   

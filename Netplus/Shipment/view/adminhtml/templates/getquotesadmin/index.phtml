@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © 2015 netpluscommerce. All rights reserved.
+ */
+?>
+<?php
+/**
+ * {{controller}} {{action}} template
+ *
+ * @var $block \Netplus\Shipment\Block\Adminhtml\GetquotesAdmin\Index
+ */
+
+
+
+
+?>
+<center>
+<?php
+
+if($block->has_weight())
+{
+	$shippingPrice=$block->getQuotes();
+	$order_id=$block->getOrderId();
+	
+if($block->is_valid_price($order_id)==200)
+{
+?>
+	<h2>Shipping Price</h2><form method="post" action="<?php echo $block->getShipmentPostUrl();?>">
+	
+	<div><input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>" /></div>
+	<div> <input type="hidden" value="<?php echo $order_id; ?>" name="order_id"/></div>
+	<div> <input type="hidden" value="<?php echo $shippingPrice;?>" name="shipping_price"/></div>
+	<div><b>₦<?php echo $shippingPrice;?></b></div>
+	<div >
+	<br/>
+		<button name="submit" class="action- scalable primary" type="submit">Post Shipment</button>
+		
+	</div>
+</form>
+<?php }else{
+	$warning=$block->getQuotes();
+	echo '<div class="message message-error">'.$warning.'</div>';
+	}
+
+  }else
+  {
+  	echo '<div class="message message-error">Some items do not have weight, please update their weight in Catalog->Products to get quotes</div>';
+  }
+	?>
+</center>
