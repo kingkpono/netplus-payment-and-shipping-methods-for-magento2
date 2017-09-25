@@ -90,12 +90,15 @@ if($this->getNetplusConfig('test_mode'))
  public function make_shipment($order,$tracking_code,$carrier_code)
   {
 
-    if($order->canShip())
-{
-  
-// Initialize the order shipment object
+   // Check if order can be shipped or has already shipped
+if ($order->canShip()) {
+   
 
-$shipment = $this->_convertOrder->toShipment($order);
+
+// Initialize the order shipment object
+  $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$convertOrder = $objectManager->create('Magento\Sales\Model\Convert\Order');
+$shipment = $convertOrder->toShipment($order);
 
 // Loop through order items
 foreach ($order->getAllItems() AS $orderItem) {
@@ -104,10 +107,10 @@ foreach ($order->getAllItems() AS $orderItem) {
         continue;
     }
 
- $qtyShipped = $orderItem->getQtyToShip();
+    $qtyShipped = $orderItem->getQtyToShip();
 
     // Create shipment item with qty
-    $shipmentItem = $this->_convertOrder->itemToShipmentItem($orderItem)->setQty($qtyShipped);
+    $shipmentItem = $convertOrder->itemToShipmentItem($orderItem)->setQty($qtyShipped);
 
     // Add shipment item to shipment
     $shipment->addItem($shipmentItem);
@@ -121,32 +124,24 @@ $shipment->getOrder()->setIsInProcess(true);
 try {
     // Save created shipment and order
     $shipment->save();
-    $shipment->getOrder()->save();
-
-  
- 
-   $order->addStatusHistoryComment(
-        __('Netplus Tracking Code : <strong>'.$tracking_code.'<strong>')
+      $shipment->getOrder()->addStatusHistoryComment(
+        __('Netplus Tracking Code : '.$tracking_code)
     )->save();  
 
 
-    // Send email
-    $this->_shipmentNotifier->notify($shipment);
+   
 
-    $shipment->save();
 } catch (\Exception $e) {
     throw new \Magento\Framework\Exception\LocalizedException(
                     __($e->getMessage())
                 );
 }
+      return true;
+     }else{
+      
+      return false;
+     }
 
-
-         return true;
-        
-}else{
-  return false;
-
-}
   }
  
  
